@@ -41,3 +41,6 @@ El proyecto utiliza un volumen Docker:
 datos_apti_compose
 
 para mantener la información de la base de datos.
+## Estado del proyecto
+
+Infraestructura Docker administrada mediante Git y GitHub.
