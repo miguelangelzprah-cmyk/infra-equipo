@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>APTI LAB - Docker Infrastructure</title>
+
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+
+body{
+
+    background:#020817;
+    color:white;
+}
+
+
+.container{
+
+    width:96%;
+    margin:auto;
+    padding:25px;
+
+}
+
+
+/* HEADER */
+
+header {
+    background: linear-gradient(120deg,#0f172a,#1d4ed8);
+    text-align: center;
+    padding: 60px 20px;
+    border-bottom: 2px solid #38bdf8;
+}
+
+
+header h1 {
+    font-size: 52px;
+    margin: 0;
+    color: white;
+    font-weight: 800;
+}
+
+
+.subtitle {
+    font-size: 22px;
+    color: #bae6fd;
+    margin-top: 15px;
+}
+
+
+.version {
+    color: #93c5fd;
+    font-size: 16px;
+    margin-top: 12px;
+}
+
+
+.badge {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 25px;
+    border-radius: 30px;
+    background: #065f46;
+    color: #86efac;
+    font-weight: bold;
+}
+
+.header h1{
+
+    color:#18a8ff;
+    font-size:38px;
+    letter-spacing:1px;
+
+}
+
+
+.header p{
+
+    margin-top:8px;
+    color:#8fa7c7;
+    font-size:16px;
+
+}
+
+
+
+
+/* SECTION */
+
+.section{
+
+    background:#101827;
+    border:1px solid #176cff;
+    border-radius:18px;
+    padding:25px;
+    margin-bottom:22px;
+
+}
+
+
+
+.section-title{
+
+    color:#20b5ff;
+    font-size:22px;
+    margin-bottom:20px;
+
+}
+
+
+
+
+/* CONTAINERS */
+
+
+.container-grid{
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+
+}
+
+
+
+.service-card{
+
+
+    background:#172235;
+    border:1px solid #176cff;
+    border-radius:14px;
+    padding:25px;
+
+}
+
+
+.service-card h3{
+
+    color:#2bb7ff;
+    margin-bottom:15px;
+
+}
+
+
+.info{
+
+    line-height:1.8;
+    color:#d5deec;
+
+}
+
+
+.running{
+
+    margin-top:15px;
+    display:inline-block;
+    background:#08a85c;
+    padding:6px 15px;
+    border-radius:20px;
+    font-size:12px;
+
+}
+
+
+
+
+/* STACK */
+
+
+.stack-grid{
+
+
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:15px;
+
+
+}
+
+
+
+.stack-card{
+
+
+background:#172235;
+border:1px solid #176cff;
+border-radius:12px;
+padding:22px;
+height:130px;
+
+
+}
+
+
+.stack-card h3{
+
+font-size:15px;
+color:white;
+margin-bottom:15px;
+
+
+}
+
+
+.stack-card p{
+
+color:#9db2cf;
+
+}
+
+
+
+
+/* COMMAND */
+
+
+.terminal{
+
+
+background:#07101c;
+border-radius:14px;
+padding:25px;
+border:1px solid #163b72;
+
+font-family:monospace;
+color:#00e6a8;
+line-height:2;
+
+}
+
+
+
+/* ARCHITECTURE */
+
+
+.arch-wrapper{
+
+
+display:flex;
+align-items:center;
+justify-content:center;
+gap:15px;
+flex-wrap:wrap;
+
+
+}
+
+
+
+.arch-box{
+
+
+background:#172235;
+border:1px solid #176cff;
+border-radius:12px;
+padding:18px;
+width:210px;
+text-align:center;
+
+
+}
+
+
+.arch-box h3{
+
+color:#20b5ff;
+font-size:16px;
+margin-bottom:10px;
+
+}
+
+
+.arch-arrow{
+
+color:#20b5ff;
+font-size:25px;
+
+}
+
+
+.network{
+
+
+border:1px dashed #20b5ff;
+
+}
+
+
+
+.storage{
+
+
+border-color:#00d9ff;
+
+}
+
+
+
+
+/* ENVIRONMENT */
+
+
+.env-grid{
+
+
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:15px;
+
+}
+
+
+
+.env-card{
+
+
+background:#172235;
+border:1px solid #176cff;
+border-radius:12px;
+padding:20px;
+
+
+}
+
+
+.env-card h3{
+
+color:#20b5ff;
+font-size:16px;
+
+}
+
+
+.env-card p{
+
+color:#a8bad4;
+margin-top:10px;
+
+}
+
+
+
+/* RESPONSIVE */
+
+
+@media(max-width:900px){
+
+
+.stack-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+
+.env-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+
+.container-grid{
+
+grid-template-columns:1fr;
+
+}
+
+
+}
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<header class="header">
+
+<header>
+
+<h1>🚀 APTI LAB</h1>
+
+<p class="subtitle">
+Docker Infrastructure Dashboard
+</p>
+
+
+<p class="version">
+v1.0 | Ubuntu Server 22.04 | Docker Compose v2
+</p>
+
+
+<span class="badge">
+🟢 ALL SYSTEMS OPERATIONAL
+</span>
+
+
+</header>
+
+
+
+
+<!-- CONTAINERS -->
+
+<section class="section">
+
+
+<h2 class="section-title">
+📦 Containers Running
+</h2>
+
+
+<div class="container-grid">
+
+
+<div class="service-card">
+
+
+<h3>
+🌐 Web Server
+</h3>
+
+
+<div class="info">
+
+Container:
+<b>web_apti_compose</b>
+
+<br>
+
+Image:
+<b>nginx</b>
+
+<br>
+
+Port:
+<b>8080 → 80</b>
+
+
+</div>
+
+
+<span class="running">
+RUNNING
+</span>
+
+
+</div>
+
+
+
+
+
+<div class="service-card">
+
+
+<h3>
+🗄 Database
+</h3>
+
+
+<div class="info">
+
+Container:
+<b>db_apti_compose</b>
+
+<br>
+
+Image:
+<b>mysql:8</b>
+
+<br>
+
+Port:
+<b>3306</b>
+
+
+</div>
+
+
+<span class="running">
+RUNNING
+</span>
+
+
+</div>
+<div class="service-card">
+
+<h3>
+<a href="http://adminer.docker.local:8082" target="_blank" style="color:inherit;text-decoration:none;">🗂 Adminer</a>
+</h3>
+
+<div class="info">
+
+Container:
+<b>adminer_apti</b>
+
+<br>
+
+Image:
+<b>adminer</b>
+
+<br>
+
+Port:
+<b>8082 → 8080</b>
+
+</div>
+
+<span class="running">
+RUNNING
+</span>
+
+</div>
+
+
+<div class="service-card">
+
+<h3>
+<a href="http://portainer.docker.local:9000" target="_blank" style="color:inherit;text-decoration:none;">🐳 Portainer</a>
+</h3>
+
+<div class="info">
+
+Container:
+<b>portainer_apti</b>
+
+<br>
+
+Image:
+<b>portainer/portainer-ce</b>
+
+<br>
+
+Port:
+<b>9000 → 9000</b>
+
+</div>
+
+<span class="running">
+RUNNING
+</span>
+
+</div>
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<!-- STACK -->
+
+
+<section class="section">
+
+
+<h2 class="section-title">
+🛠 Technology Stack
+</h2>
+
+
+
+<div class="stack-grid">
+
+
+<div class="stack-card">
+
+<h3>
+🐧 Operating System
+</h3>
+
+<p>
+Ubuntu Server<br>
+22.04 LTS
+</p>
+
+</div>
+
+
+
+<div class="stack-card">
+
+<h3>
+🐳 Container Runtime
+</h3>
+
+<p>
+Docker Engine
+</p>
+
+</div>
+
+
+
+
+<div class="stack-card">
+
+<h3>
+⚙️ Orchestration
+</h3>
+
+<p>
+Docker Compose<br>
+v2
+</p>
+
+</div>
+
+
+
+
+<div class="stack-card">
+
+<h3>
+🌐 Web Server
+</h3>
+
+<p>
+Nginx
+</p>
+
+</div>
+
+
+
+
+<div class="stack-card">
+
+<h3>
+🗄 Database
+</h3>
+
+<p>
+MySQL<br>
+Version 8
+</p>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<!-- COMMANDS -->
+
+
+<section class="section">
+
+
+<h2 class="section-title">
+⌨ Docker Commands Used
+</h2>
+
+
+<div class="terminal">
+
+
+$ docker compose up -d
+
+<br>
+
+✓ Services started successfully
+
+<br><br>
+
+
+$ docker ps
+
+<br>
+
+✓ Containers running
+
+<br><br>
+
+
+$ docker compose logs
+
+<br>
+
+✓ Service monitoring
+
+<br><br>
+
+
+$ docker network ls
+
+<br>
+
+✓ Network verified
+
+<br><br>
+
+
+$ docker volume ls
+
+<br>
+
+✓ Persistent storage checked
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<!-- ARCHITECTURE -->
+
+
+<section class="section">
+
+
+<h2 class="section-title">
+🏗 Docker System Architecture
+</h2>
+
+
+
+<div class="arch-wrapper">
+
+
+
+<div class="arch-box">
+
+👤
+
+<h3>
+Usuario
+</h3>
+
+Acceso web
+
+</div>
+
+
+
+<div class="arch-arrow">
+→
+</div>
+
+
+
+
+<div class="arch-box">
+
+🌐
+
+<h3>
+Nginx
+</h3>
+
+web_apti_compose
+
+<br>
+
+8080 → 80
+
+</div>
+
+
+
+
+<div class="arch-arrow">
+→
+</div>
+
+
+
+
+<div class="arch-box network">
+
+🔗
+
+<h3>
+Network
+</h3>
+
+red_apti_compose
+
+</div>
+
+
+
+
+<div class="arch-arrow">
+→
+</div>
+
+
+
+
+<div class="arch-box">
+
+🗄
+
+<h3>
+MySQL 8
+</h3>
+
+db_apti_compose
+
+<br>
+
+3306
+
+</div>
+
+
+
+
+<div class="arch-arrow">
+→
+</div>
+
+
+
+<div class="arch-box storage">
+
+💾
+
+<h3>
+Volume
+</h3>
+
+datos_apti_compose
+
+</div>
+
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+<!-- ENVIRONMENT -->
+
+
+<section class="section">
+
+
+<h2 class="section-title">
+🐳 Docker Environment
+</h2>
+
+
+
+<div class="env-grid">
+
+
+
+<div class="env-card">
+
+<h3>
+⚙ Docker Engine
+</h3>
+
+<p>
+Motor de ejecución
+</p>
+
+</div>
+
+
+
+
+<div class="env-card">
+
+<h3>
+📦 Containers
+</h3>
+
+<p>
+<p>
+web_apti_compose<br>
+db_apti_compose<br>
+adminer_apti<br>
+portainer_apti
+</p>
+
+</div>
+
+
+
+
+<div class="env-card">
+
+<h3>
+🔗 Network
+</h3>
+
+<p>
+Comunicación interna
+</p>
+
+</div>
+
+
+
+
+<div class="env-card">
+
+<h3>
+💾 Volume
+</h3>
+
+<p>
+Persistencia MySQL
+</p>
+
+</div>
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+</div>
+
+
+</body>
+
+</html>

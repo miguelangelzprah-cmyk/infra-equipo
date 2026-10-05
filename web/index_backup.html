@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>APTI LAB - DOCKER COMPOSE - Plataforma TI</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h1>APTI LAB</h1>
+<p>Despliegue: Docker Compose v2</p>
+<p>Servicios activos: Nginx + MySQL 8</p>
+<p>
+Plataforma de Servicios TI basada en Docker
+</p>
+
+</header>
+
+
+
+<div class="container">
+
+
+<div class="card">
+
+<h2>🖥️ Servidor</h2>
+
+<p>
+Sistema operativo: Ubuntu Server 22.04
+</p>
+
+<p>
+Virtualizador: Proxmox VE
+</p>
+
+<p>
+Estado:
+<span class="status">
+OPERATIVO
+</span>
+</p>
+
+</div>
+
+
+
+
+<div class="card">
+
+<h2>🐳 Contenedores Docker</h2>
+
+
+<div class="info">
+
+
+<div class="box">
+
+<h3>🌐 Nginx</h3>
+
+<p>
+Servidor Web
+</p>
+
+<p class="status">
+● Activo
+</p>
+
+</div>
+
+
+
+<div class="box">
+
+<h3>🗄️ MySQL 8</h3>
+
+<p>
+Base de datos
+</p>
+
+<p class="status">
+● Activo
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<h2>🌐 Infraestructura</h2>
+
+
+<p>
+Red Docker:
+<b>red_apti</b>
+</p>
+
+
+<p>
+Volumen:
+<b>datos_apti</b>
+</p>
+
+
+<p>
+Dominio:
+<b>web.apti.local</b>
+</p>
+
+
+</div>
+<div class="card">
+    <h2>🏗️ Arquitectura del Sistema</h2>
+
+    <p>Usuario</p>
+    <p>⬇️</p>
+    <p>Nginx (Servidor Web)</p>
+    <p>⬇️</p>
+    <p>MySQL 8 (Base de Datos)</p>
+
+    <p><b>Red:</b> red_apti_compose</p>
+    <p><b>Volumen:</b> datos_apti_compose</p>
+</div>
+
+
+
+<footer>
+
+APTI LAB - Laboratorio de Virtualización y Contenedores
+
+</footer>
+
+
+
+</body>
+
+</html>
